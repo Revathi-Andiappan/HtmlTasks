@@ -1,0 +1,121 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .parentDiv{
+                max-height:1250px;
+                border:black;
+                margin-left: 20%;
+                margin-right: 20%;  
+                border-width:1px;
+                border-style:ridge;
+            }
+        
+            .tableContent{
+                border-style:ridge;
+            }
+
+            table{
+                max-width:100%;
+                margin:auto;
+                max-height:200px;
+                text-align:center;
+                background-color:rgb(99, 214, 214);
+                box-shadow: rgb(3, 131, 250);
+                box-shadow: 10px 10px 5px;
+            }
+
+            td{
+                text-align:center;
+                max-width:500px;
+                border-style: ridge;
+            }
+            button{
+                border-style: none;
+            }
+        </style> 
+    </head>
+    <body>
+        <h1 style="text-align:center;color:rgb(8, 105, 250)">CALCULATOR</h1>
+        <!-- calculator script -->
+    <script>
+        var calculatorDiv = createDivCustom();
+        var calculatorTable = createTable();
+
+        calculatorDiv.append(calculatorTable);
+
+        document.body.append(calculatorDiv);
+        /* create div */
+        function createDivCustom(){
+            let divEle = document.createElement('div');
+            divEle.setAttribute("class", "container my-container");
+            return divEle;
+            }
+        /* create table */
+        function createTable(){
+            let tableMain = document.createElement('table');
+            var columnValue = -1;
+            let resultRow = document.createElement('tr');
+            let resultCol = document.createElement('td');
+            resultCol.setAttribute("colspan","3");
+            let resConsole = document.createElement('input');
+            resConsole.setAttribute("type","text");
+            resConsole.setAttribute("id","resultConsole");
+            resultCol.append(resConsole);
+            resultRow.append(resultCol);
+            tableMain.append(resultRow);
+            for(var i=1;i<=5;i++){
+                let tableRow = document.createElement('tr');
+                for(var j=1; j<=3;j++){
+                    let tableCol = document.createElement('td');
+                    let colButton = document.createElement('button');
+                    colButton.setAttribute("value",columnValue++);
+                   var x1;
+                   if(columnValue==10){ colButton.innerText= "+";} 
+                   else if(columnValue==11){colButton.innerText= "-";} 
+                   else if(columnValue==12){colButton.innerText= "*";}
+                   else if(columnValue==13){colButton.innerText= "clr";}
+                   else if(columnValue==14){colButton.innerText= "=";}
+                   else{
+                    colButton.innerText= columnValue;
+                   
+                   } var x1="calculate("+ columnValue + ")";
+                    colButton.setAttribute("onclick",x1);
+                    if(columnValue==14){colButton.setAttribute("onclick","calculateResult()");} 
+                    if(columnValue==13){colButton.setAttribute("onclick","clearConsole()");} 
+                    colButton.setAttribute("class","tableContent");
+                    colButton.setAttribute("id","tableContentId");
+                    tableCol.append(colButton);
+                    tableRow.append(tableCol);
+                }tableMain.append(tableRow);
+            }
+            return tableMain;
+        }
+
+        /* Calculating values */
+        function calculate(values){
+            if(values==10){document.getElementById("resultConsole").value+="+";}
+            else if(values==11){document.getElementById("resultConsole").value+="-";}
+            else if(values==12){document.getElementById("resultConsole").value+="*";}
+            else if(values==14){document.getElementById("resultConsole").value+="=";}
+            else {document.getElementById("resultConsole").value+=values;}
+        }
+
+        /* Calculating result */
+        function calculateResult(){
+            let res =  document.getElementById("resultConsole").value;
+            let resultVal = eval(res);
+            document.getElementById("resultConsole").value = resultVal;
+        }
+
+        /* clear console */
+        function clearConsole(){
+            document.getElementById("resultConsole").value="";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
