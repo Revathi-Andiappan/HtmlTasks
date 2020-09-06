@@ -1,0 +1,16 @@
+.timerConsole{
+    max-width:100%;
+    margin:auto;
+    text-align:center;
+    font-size:100px;
+    margin-top: 200px;
+    margin-left:100px;
+    border-style: none;
+    color:rgb(155, 248, 6);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: url("/images/2021-2.jpg") no-repeat center center fixed;
+}
+body{
+    background: url("/images/2021-2.jpg") no-repeat center center fixed;
+    background-clip: content-box;
+}
