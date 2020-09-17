@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Grandstander&display=swap" rel="stylesheet">
+        <title>QUIZ</title>
+        <style>
+            body{
+                font-family: 'Grandstander', cursive;
+                font-size:50px;
+                color:rgb(3, 167, 218);
+                margin:200px 150px 150px 450px;
+            }
+            button{
+                margin-top: 15px;
+                color:rgb(3, 167, 218);
+                font-family: 'Grandstander', cursive;
+                font-size:50px;
+            }
+            mainDiv{
+                text-align: center;
+            }
+            form, button{
+                font-size: x-large;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+        <script>
+            var mainDiv = createDiv();
+            document.body.append(mainDiv);
+            appendOptionsCategory();
+            appendOptionsDifficulty(); 
+            
+            function createDiv(){
+                var mainDiv = document.createElement('div');
+                mainDiv.setAttribute('class','container mainDiv');
+                mainDiv.innerText="QUICK QUIZ";
+                var formDiv = document.createElement('form')
+                formDiv.setAttribute("action",'/game.html'); 
+                formDiv.setAttribute("onsubmit","setCookies()");
+                var form = formCreateDiv("catagory");
+                formDiv.append(form);
+                var form = formCreateDiv("difficulty");
+                formDiv.append(form);
+                var submitDiv = document.createElement('div');
+                var submitButton =  document.createElement('input');
+                submitButton.setAttribute("type","submit");
+                submitButton.setAttribute("value","PLAY");
+                submitDiv.append(submitButton);
+                formDiv.append(submitDiv);
+                mainDiv.append(formDiv);
+                return mainDiv;
+            }
+
+            function setCookies(){
+                console.log("inside cookies");
+                document.cookie = "difficulty="+document.getElementById("difficulty").value;
+                document.cookie = "catagory="+document.getElementById("catagory").value;
+            }
+            function formCreateDiv(typeVal){
+                var selectDropdown = document.createElement('select');
+                selectDropdown.setAttribute("id",typeVal);
+                return selectDropdown;
+            }
+
+            function appendOptionsCategory(){
+                document.getElementById("catagory").innerHTML = 
+                                                        "<option value=9>General Knowledge</option>"+
+                                                        "<option value=27>Animals</option>"+
+                                                        "<option value=20>Mythology</option>"+
+                                                        "<option value=28>Vehicles</option>"+
+                                                        "<option value=30>Gadgets</option>"+
+                                                        "<option value=11>Film</option>"+
+                                                        "<option value=12>Music</option>";
+            }
+            function appendOptionsDifficulty(){
+                document.getElementById("difficulty").innerHTML = 
+                                                        "<option value=easy>Easy</option>"+
+                                                        "<option value=medium>Medium</option>"+
+                                                        "<option value=hard>Difficulty</option>";
+            }  
+
+        </script>
+    </body>
+</html>
